@@ -1,0 +1,17 @@
+{
+  "name": "atu-dp",
+  "version": "1.0.0",
+  "description": "ATU University Application Mobile",
+  "main": "index.js",
+  "repository": "git@github.com:Roman-00/atu-dp.git",
+  "author": "Roman-00 <rvasin00@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "backend": "cd backend && yarn serve",
+    "client": "cd static && yarn serve",
+    "dev": "concurrently \"yarn backend\" \"yarn client\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.2.2"
+  }
+}
