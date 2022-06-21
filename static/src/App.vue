@@ -7,11 +7,14 @@ import { useRoute } from 'vue-router';
 import debounce from 'lodash/debounce';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+import Modal from '@/components/Modal.vue';
 
 const route = useRoute();
 const isShow = ref(false);
 const isScroll = ref(false);
 const closeTimeout = ref(null);
+const showModal = ref(false);
+
 const LOADER_SHOW_DURATION = 3000;
 /**
  * Получаем title роутов, для перехода
@@ -54,6 +57,13 @@ onBeforeUnmount(() => {
 onUnmounted(() => {
     window.removeEventListener('scroll', scrollHeader);
 });
+
+/**
+ * Обновляем состояние модального окна точнеее его view
+ */
+function updateStateModal() {
+    showModal.value = !showModal.value;
+}
 </script>
 
 <template>
@@ -66,4 +76,12 @@ onUnmounted(() => {
     <Footer
         v-if="hidden"
     />
+
+    <Modal v-if="!showModal" @close="updateStateModal"/>
 </template>
+
+<style lang="scss">
+#app {
+    min-height: 100vh;
+}
+</style>
